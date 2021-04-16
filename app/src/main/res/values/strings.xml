@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Chromecast Example</string>
+
+    <!-- Cast -->
+    <string name="chromecast_app_id" translatable="false">4AB73753</string>
+    <string name="chromecast_title_namespace" translatable="false">urn:x-cast:example.cast.title</string>
+    <string name="chromecast_move_namespace" translatable="false">urn:x-cast:example.cast.move</string>
+
+    <!-- Main Activity -->
+    <string name="main_activity_text_input_hint">Enter some text</string>
+    <string name="main_activity_button_send">SEND</string>
+    <string name="main_activity_button_up">UP</string>
+    <string name="main_activity_button_down">DOWN</string>
+    <string name="main_activity_button_right">Right</string>
+    <string name="main_activity_button_left">Left</string>
+
+    <!-- Menu Main -->
+    <string name="menu_main_cast">Cast</string>
+</resources>

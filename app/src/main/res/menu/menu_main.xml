@@ -1,0 +1,20 @@
+<!--
+  ~ Created by Tomasz Kiljanczyk on 4/8/21 1:47 PM
+  ~ Copyright (c) 2021 . All rights reserved.
+  ~ Last modified 4/8/21 1:41 PM
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pl.gunock.chromecastexample.MainActivity"
+    tools:ignore="AlwaysShowAction">
+
+    <item
+        android:id="@+id/menu_cast"
+        android:title="@string/menu_main_cast"
+        app:actionProviderClass="pl.gunock.chromecastexample.cast.CustomMediaRouteActionProvider"
+        app:showAsAction="always"
+        tools:icon="@drawable/mr_button_dark" />
+
+</menu>
