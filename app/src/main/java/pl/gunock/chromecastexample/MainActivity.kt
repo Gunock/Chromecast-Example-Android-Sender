@@ -14,18 +14,18 @@ import pl.gunock.chromecastexample.enums.MoveAction
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mTitleNamespace: String
-    private lateinit var mMoveNamespace: String
-    private lateinit var mCastContext: CastContext
+    private lateinit var titleNamespace: String
+    private lateinit var moveNamespace: String
+    private lateinit var castContext: CastContext
 
 
-    private lateinit var mTextInput: EditText
+    private lateinit var textInput: EditText
 
-    private lateinit var mSendButton: Button
-    private lateinit var mLeftButton: Button
-    private lateinit var mRightButton: Button
-    private lateinit var mUpButton: Button
-    private lateinit var mDownButton: Button
+    private lateinit var sendButton: Button
+    private lateinit var leftButton: Button
+    private lateinit var rightButton: Button
+    private lateinit var upButton: Button
+    private lateinit var downButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,18 +33,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar_main))
 
-        mTitleNamespace = getString(R.string.chromecast_title_namespace)
-        mMoveNamespace = getString(R.string.chromecast_move_namespace)
-        // TODO: Remove usage of deprecated method
-        mCastContext = CastContext.getSharedInstance(applicationContext)
+        titleNamespace = getString(R.string.chromecast_title_namespace)
+        moveNamespace = getString(R.string.chromecast_move_namespace)
+        castContext = CastContext.getSharedInstance()!!
 
-        mTextInput = findViewById(R.id.ed_text)
+        textInput = findViewById(R.id.ed_text)
 
-        mSendButton = findViewById(R.id.btn_send)
-        mLeftButton = findViewById(R.id.btn_left)
-        mRightButton = findViewById(R.id.btn_right)
-        mUpButton = findViewById(R.id.btn_up)
-        mDownButton = findViewById(R.id.btn_down)
+        sendButton = findViewById(R.id.btn_send)
+        leftButton = findViewById(R.id.btn_left)
+        rightButton = findViewById(R.id.btn_right)
+        upButton = findViewById(R.id.btn_up)
+        downButton = findViewById(R.id.btn_down)
 
         setupListeners()
     }
@@ -55,53 +54,55 @@ class MainActivity : AppCompatActivity() {
         val castActionProvider =
             MenuItemCompat.getActionProvider(menu.findItem(R.id.menu_cast)) as CustomMediaRouteActionProvider
 
-        castActionProvider.routeSelector = mCastContext.mergedSelector!!
+        castActionProvider.routeSelector = castContext.mergedSelector!!
 
         return true
     }
 
     private fun setupListeners() {
-        mSendButton.setOnClickListener {
-            val session: CastSession = mCastContext.sessionManager.currentCastSession
+        sendButton.setOnClickListener {
+            val session: CastSession = castContext.sessionManager.currentCastSession
                 ?: return@setOnClickListener
 
-            val text: String = mTextInput.text.toString()
+            val text: String = textInput.text.toString()
             val messageJson: JSONObject = JSONObject().apply { put("text", text) }
-            session.sendMessage(mTitleNamespace, messageJson.toString())
+            session.sendMessage(titleNamespace, messageJson.toString())
         }
 
-        mLeftButton.setOnClickListener {
-            val session: CastSession = mCastContext.sessionManager.currentCastSession
+        leftButton.setOnClickListener {
+            val session: CastSession = castContext.sessionManager.currentCastSession
                 ?: return@setOnClickListener
 
-            sendMoveAction(session, MoveAction.LEFT)
+            sendMoveActionCommand(session, MoveAction.LEFT)
         }
 
-        mRightButton.setOnClickListener {
-            val session: CastSession = mCastContext.sessionManager.currentCastSession
+        rightButton.setOnClickListener {
+            val session: CastSession = castContext.sessionManager.currentCastSession
                 ?: return@setOnClickListener
 
-            sendMoveAction(session, MoveAction.RIGHT)
+            sendMoveActionCommand(session, MoveAction.RIGHT)
         }
 
-        mUpButton.setOnClickListener {
-            val session: CastSession = mCastContext.sessionManager.currentCastSession
+        upButton.setOnClickListener {
+            val session: CastSession = castContext.sessionManager.currentCastSession
                 ?: return@setOnClickListener
 
-            sendMoveAction(session, MoveAction.UP)
+            sendMoveActionCommand(session, MoveAction.UP)
         }
 
-        mDownButton.setOnClickListener {
-            val session: CastSession = mCastContext.sessionManager.currentCastSession
+        downButton.setOnClickListener {
+            val session: CastSession = castContext.sessionManager.currentCastSession
                 ?: return@setOnClickListener
 
-            sendMoveAction(session, MoveAction.DOWN)
+            sendMoveActionCommand(session, MoveAction.DOWN)
         }
     }
 
-    private fun sendMoveAction(session: CastSession, moveAction: MoveAction) {
-        val messageJson: JSONObject = JSONObject().apply { put("action", moveAction.toString()) }
-        session.sendMessage(mMoveNamespace, messageJson.toString())
+    private fun sendMoveActionCommand(session: CastSession, moveAction: MoveAction) {
+        val messageJson: JSONObject = JSONObject().apply {
+            put("action", moveAction.toString())
+        }
+        session.sendMessage(moveNamespace, messageJson.toString())
     }
 
 }

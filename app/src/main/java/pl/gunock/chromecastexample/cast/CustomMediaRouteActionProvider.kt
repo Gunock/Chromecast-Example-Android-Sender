@@ -8,7 +8,7 @@ import androidx.mediarouter.app.MediaRouteDialogFactory
 
 class CustomMediaRouteActionProvider(context: Context) : MediaRouteActionProvider(context) {
 
-    private var mFactory: MediaRouteDialogFactory = CustomMediaRouteDialogFactory()
+    private var factory: MediaRouteDialogFactory = CustomMediaRouteDialogFactory()
 
     override fun onCreateActionView(): View {
         val castButton = super.onCreateActionView() as MediaRouteButton
@@ -17,11 +17,11 @@ class CustomMediaRouteActionProvider(context: Context) : MediaRouteActionProvide
     }
 
     override fun getDialogFactory(): MediaRouteDialogFactory {
-        return mFactory
+        return factory
     }
 
     override fun setDialogFactory(factory: MediaRouteDialogFactory) {
-        mFactory = factory
+        this.factory = factory
     }
 
 }
