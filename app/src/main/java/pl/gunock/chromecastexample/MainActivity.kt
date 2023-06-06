@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         mTitleNamespace = getString(R.string.chromecast_title_namespace)
         mMoveNamespace = getString(R.string.chromecast_move_namespace)
+        // TODO: Remove usage of deprecated method
         mCastContext = CastContext.getSharedInstance(applicationContext)
 
         mTextInput = findViewById(R.id.ed_text)
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         val castActionProvider =
             MenuItemCompat.getActionProvider(menu.findItem(R.id.menu_cast)) as CustomMediaRouteActionProvider
 
-        castActionProvider.routeSelector = mCastContext.mergedSelector
+        castActionProvider.routeSelector = mCastContext.mergedSelector!!
 
         return true
     }
