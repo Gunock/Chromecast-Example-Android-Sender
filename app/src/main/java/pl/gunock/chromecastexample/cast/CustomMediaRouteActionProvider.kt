@@ -10,6 +10,10 @@ class CustomMediaRouteActionProvider(context: Context) : MediaRouteActionProvide
 
     private var factory: MediaRouteDialogFactory = CustomMediaRouteDialogFactory()
 
+    init {
+        setAlwaysVisible(true)
+    }
+
     override fun onCreateActionView(): View {
         val castButton = super.onCreateActionView() as MediaRouteButton
         castButton.dialogFactory = dialogFactory

@@ -3,14 +3,15 @@
 
     <!-- Cast -->
     <string name="chromecast_app_id" translatable="false">4AB73753</string>
+    <string name="chromecast_toast_no_session">No cast session</string>
 
     <!-- Main Activity -->
     <string name="main_activity_text_input_hint">Enter some text</string>
-    <string name="main_activity_button_send">SEND</string>
-    <string name="main_activity_button_up">UP</string>
-    <string name="main_activity_button_down">DOWN</string>
-    <string name="main_activity_button_right">RIGHT</string>
-    <string name="main_activity_button_left">LEFT</string>
+    <string name="main_activity_button_send">Send</string>
+    <string name="main_activity_button_up">Up</string>
+    <string name="main_activity_button_down">Down</string>
+    <string name="main_activity_button_right">Right</string>
+    <string name="main_activity_button_left">Left</string>
 
     <!-- Menu Main -->
     <string name="menu_main_cast">Cast</string>
